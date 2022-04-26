@@ -31,7 +31,7 @@ namespace AddressBook
             contact.email = Console.ReadLine();
             Console.WriteLine("Enter the Phone Number :");
             contact.phoneNumber = Console.ReadLine();
-            //People.Add(contact);
+            People.Add(contact);
             //Display();
         }
        
