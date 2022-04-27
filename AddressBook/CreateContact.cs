@@ -10,11 +10,10 @@ namespace AddressBook
     {
 
         public List<Contact> People = new List<Contact>();
-        Contact contact = new Contact();
         public void AddPerson()
         {
             //People.Add(this);
-
+            Contact contact = new Contact();
             Console.WriteLine("Enter the First name :");
             contact.firstName = Console.ReadLine();
             Console.WriteLine("Enter the Last name :");
