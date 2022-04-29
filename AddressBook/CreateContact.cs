@@ -52,7 +52,7 @@ namespace AddressBook
             string name = Console.ReadLine();
             foreach (var data in People)
             {
-                if (data.firstName == null)
+                if (data.firstName != name)
                 {
                     Console.WriteLine("Contact for {0} count not be found.", name);
                 }
@@ -137,6 +137,14 @@ namespace AddressBook
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+            }
+        }
+        public void AddMultipleContacts(int n)
+        {
+            while(n > 0)
+            {
+                AddPerson();
+                n--;
             }
         }
     }
