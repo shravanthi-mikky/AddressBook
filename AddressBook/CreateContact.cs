@@ -32,7 +32,7 @@ namespace AddressBook
             Console.WriteLine("Enter the Email :");
             contact.email = Console.ReadLine();
             Console.WriteLine("Enter the Phone Number :");
-            contact.phoneNumber = Convert.ToInt16(Console.ReadLine());
+            contact.phoneNumber = Console.ReadLine();
             People.Add(contact);
         }
 
@@ -103,7 +103,7 @@ namespace AddressBook
                             break;
                         case 8:
                             Console.WriteLine("Please enter the Phone Number : ");
-                            int PhoneNumber = Convert.ToInt16(Console.ReadLine());
+                            string PhoneNumber = Console.ReadLine();
                             data.phoneNumber = PhoneNumber;
                             break;
                         default:
