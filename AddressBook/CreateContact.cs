@@ -153,177 +153,53 @@ namespace AddressBook
         }
         public void AddUniqueContacts()
         {
-            Console.WriteLine("Choose the dictionary to store values in it :\n1)Dictionary1\n2)Dictionary2\n3)Dictionary3");
-            int dict = Convert.ToInt16(Console.ReadLine());
-            switch(dict)
+            Console.WriteLine("Welcome to Dictionary1");
+            Console.WriteLine("Enter the First name : ");
+            string name = Console.ReadLine().ToLower();
+            foreach (var data in People)
             {
-                //Logic to Add to Dictionary1
-                case 1:
-                    Console.WriteLine("Welcome to Dictionary1");
-                    Console.WriteLine("Enter the First name : ");
-                    string name = Console.ReadLine().ToLower();
-                    foreach (var data in People)
+                if (People.Contains(data))
+                {
+                    if (data.firstName == name)
                     {
-                        if (People.Contains(data))
+                        Console.WriteLine("Enter the Unique name : ");
+                        string unique = Console.ReadLine().ToLower();
+                        if (Dictionary1.ContainsKey(unique))
                         {
-                            if (data.firstName == name)
-                            {
-                                Console.WriteLine("Enter the Unique name : ");
-                                string unique = Console.ReadLine().ToLower();
-                                if (Dictionary1.ContainsKey(unique))
-                                {
-                                    Console.WriteLine("Person name already exists! ");
-                                }
-                                Dictionary1.Add(unique, People);
-                                Console.WriteLine("added in dictionary!");
-                                return;
-                            }
+                            Console.WriteLine("Person name already exists! ");
                         }
+                        Dictionary1.Add(unique, People);
+                        Console.WriteLine("added in dictionary!");
+                        return;
                     }
-                    Console.WriteLine("Contact list doesn't exist! Please create a contact list!");
-                    //return;
-                    break;
-                //Logic to Add to Dictionary2
-                case 2:
-                    Console.WriteLine("Welcome to Dictionary2");
-                    Console.WriteLine("Enter the First name : ");
-                    string name1 = Console.ReadLine().ToLower();
-                    foreach (var data in People)
-                    {
-                        if (People.Contains(data))
-                        {
-                            if (data.firstName == name1)
-                            {
-                                Console.WriteLine("Enter the Unique name : ");
-                                string unique = Console.ReadLine().ToLower();
-                                if (Dictionary2.ContainsKey(unique))
-                                {
-                                    Console.WriteLine("Person name already exists! ");
-                                }
-                                Dictionary2.Add(unique, People);
-                                Console.WriteLine("added in Dictionary2!");
-                                return;
-                            }
-                        }
-                    }
-                    Console.WriteLine("Contact list doesn't exist! Please create a contact list!");
-                   // return;
-                    break;
-                // Logic to Add to Dictionary3
-                case 3:
-                    Console.WriteLine("Welcome to Dictionary3");
-                    Console.WriteLine("Enter the First name : ");
-                    string name3 = Console.ReadLine().ToLower();
-                    foreach (var data in People)
-                    {
-                        if (People.Contains(data))
-                        {
-                            if (data.firstName == name3)
-                            {
-                                Console.WriteLine("Enter the Unique name : ");
-                                string unique = Console.ReadLine().ToLower();
-                                if (Dictionary3.ContainsKey(unique))
-                                {
-                                    Console.WriteLine("Person name already exists! ");
-                                }
-                                Dictionary3.Add(unique, People);
-                                Console.WriteLine("added in dictionary!");
-                                return;
-                            }
-                        }
-                    }
-                    Console.WriteLine("Contact list doesn't exist! Please create a contact list!");
-                   // return;
-                    break;
-                default:
-                    Console.WriteLine("please choose correct option!");
-                    break;
+                }
             }
-            
+            Console.WriteLine("Contact list doesn't exist! Please create a contact list!");
+
         }
         public void DisplayUniqueContacts()
         {
-            Console.WriteLine("Choose the dictionary you want to print : \n1)Dictionary1\n2)Dictionary2\n3)Dictionary3");
-            int dict = Convert.ToInt32(Console.ReadLine());
-            switch(dict)
+            Console.WriteLine("Enter the unique name (key value) : ");
+            string name = Console.ReadLine();
+            foreach (var contact in Dictionary1)
             {
-                // Logic to Display for Dictionary1
-                case 1:
-                    Console.WriteLine("Enter the unique name (key value) : ");
-                    string name = Console.ReadLine();
-                    foreach (var contact in Dictionary1)
+                if (contact.Key.Contains(name))
+                {
+                    foreach (var data in contact.Value)
                     {
-                        if (contact.Key.Contains(name))
-                        {
-                            foreach (var data in contact.Value)
-                            {
-                                Console.WriteLine("The contact of " + data.firstName + " Details are");
-                                Console.WriteLine("Name of person : " + data.firstName + " " + data.lastName);
-                                Console.WriteLine("Address of person is : " + data.address);
-                                Console.WriteLine("City : " + data.city);
-                                Console.WriteLine("State :" + data.state);
-                                Console.WriteLine("Zip :" + data.zip);
-                                Console.WriteLine("Email of person : " + data.email);
-                                Console.WriteLine("Phone Number of person : " + data.phoneNumber);
+                        Console.WriteLine("The contact of " + data.firstName + " Details are");
+                        Console.WriteLine("Name of person : " + data.firstName + " " + data.lastName);
+                        Console.WriteLine("Address of person is : " + data.address);
+                        Console.WriteLine("City : " + data.city);
+                        Console.WriteLine("State :" + data.state);
+                        Console.WriteLine("Zip :" + data.zip);
+                        Console.WriteLine("Email of person : " + data.email);
+                        Console.WriteLine("Phone Number of person : " + data.phoneNumber);
 
-                            }
-                        }
-
-                        return;
                     }
-                    break;
-                // Logic to Display for Dictionary2
-                case 2:
-                    Console.WriteLine("Enter the unique name (key value) : ");
-                    string name2 = Console.ReadLine();
-                    foreach (var contact in Dictionary2)
-                    {
-                        if (contact.Key.Contains(name2))
-                        {
-                            foreach (var data in contact.Value)
-                            {
-                                Console.WriteLine("The contact of " + data.firstName + " Details are");
-                                Console.WriteLine("Name of person : " + data.firstName + " " + data.lastName);
-                                Console.WriteLine("Address of person is : " + data.address);
-                                Console.WriteLine("City : " + data.city);
-                                Console.WriteLine("State :" + data.state);
-                                Console.WriteLine("Zip :" + data.zip);
-                                Console.WriteLine("Email of person : " + data.email);
-                                Console.WriteLine("Phone Number of person : " + data.phoneNumber);
+                }
 
-                            }
-                        }
-
-                        return;
-                    }
-                    break;
-                // Logic to Display for Dictionary3
-                case 3:
-                    Console.WriteLine("Enter the unique name (key value) : ");
-                    string name3 = Console.ReadLine();
-                    foreach (var contact in Dictionary3)
-                    {
-                        if (contact.Key.Contains(name3))
-                        {
-                            foreach (var data in contact.Value)
-                            {
-                                Console.WriteLine("The contact of " + data.firstName + " Details are");
-                                Console.WriteLine("Name of person : " + data.firstName + " " + data.lastName);
-                                Console.WriteLine("Address of person is : " + data.address);
-                                Console.WriteLine("City : " + data.city);
-                                Console.WriteLine("State :" + data.state);
-                                Console.WriteLine("Zip :" + data.zip);
-                                Console.WriteLine("Email of person : " + data.email);
-                                Console.WriteLine("Phone Number of person : " + data.phoneNumber);
-
-                            }
-                        }
-
-                        return;
-                    }
-                    break;
-                default :
-                    break;
+                return;
             }
             Console.WriteLine("Oops! Unique Contact does not exist.Please create a unique contact.");
             return;
