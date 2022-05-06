@@ -10,6 +10,10 @@ namespace AddressBook
     {
 
         public List<Contact> People = new List<Contact>();
+        public Dictionary<string, List<Contact>> Dictionary1 = new Dictionary<string, List<Contact>>();
+        public Dictionary<string, List<Contact>> Dictionary2 = new Dictionary<string, List<Contact>>();
+        public Dictionary<string, List<Contact>> Dictionary3 = new Dictionary<string, List<Contact>>();
+
         public void AddPerson()
         {
 
@@ -25,11 +29,11 @@ namespace AddressBook
             Console.WriteLine("Enter the State :");
             contact.state = Console.ReadLine();
             Console.WriteLine("Enter the Zip Code :");
-            contact.zip = Console.ReadLine();
+            contact.zip = Convert.ToInt16(Console.ReadLine());
             Console.WriteLine("Enter the Email :");
             contact.email = Console.ReadLine();
             Console.WriteLine("Enter the Phone Number :");
-            contact.phoneNumber = Console.ReadLine();
+            contact.phoneNumber = Convert.ToInt16(Console.ReadLine());
             People.Add(contact);
         }
 
@@ -39,12 +43,12 @@ namespace AddressBook
             {
                 if (People.Contains(data))
                     Console.WriteLine("Name of person : " + data.firstName + " " + data.lastName);
-                Console.WriteLine("Address of person is : " + data.address);
-                Console.WriteLine("City : " + data.city);
-                Console.WriteLine("State :" + data.state);
-                Console.WriteLine("Zip :" + data.zip);
-                Console.WriteLine("Email of person : " + data.email);
-                Console.WriteLine("Phone Number of person : " + data.phoneNumber);
+                    Console.WriteLine("Address of person is : " + data.address);
+                    Console.WriteLine("City : " + data.city);
+                    Console.WriteLine("State :" + data.state);
+                    Console.WriteLine("Zip :" + data.zip);
+                    Console.WriteLine("Email of person : " + data.email);
+                    Console.WriteLine("Phone Number of person : " + data.phoneNumber);
             }
         }
         public void edit()
@@ -90,7 +94,7 @@ namespace AddressBook
                             break;
                         case 6:
                             Console.WriteLine("Please enter the zip Code : ");
-                            string Zip = Console.ReadLine();
+                            int Zip = Convert.ToInt16(Console.ReadLine());
                             data.zip = Zip;
                             break;
                         case 7:
@@ -100,7 +104,7 @@ namespace AddressBook
                             break;
                         case 8:
                             Console.WriteLine("Please enter the Phone Number : ");
-                            string PhoneNumber = Console.ReadLine();
+                            int PhoneNumber = Convert.ToInt16(Console.ReadLine());
                             data.phoneNumber = PhoneNumber;
                             break;
                         default:
@@ -147,6 +151,59 @@ namespace AddressBook
                 AddPerson();
                 n--;
             }
+        }
+        public void AddUniqueContacts()
+        {
+            Console.WriteLine("Welcome to Dictionary1");
+            Console.WriteLine("Enter the First name : ");
+            string name = Console.ReadLine().ToLower();
+            foreach (var data in People)
+            {
+                if (People.Contains(data))
+                {
+                    if (data.firstName == name)
+                    {
+                        Console.WriteLine("Enter the Unique name : ");
+                        string unique = Console.ReadLine().ToLower();
+                        if (Dictionary1.ContainsKey(unique))
+                        {
+                            Console.WriteLine("Person name already exists! ");
+                        }
+                        Dictionary1.Add(unique, People);
+                        Console.WriteLine("added in dictionary!");
+                        return;
+                    }
+                }
+            }
+            Console.WriteLine("Contact list doesn't exist! Please create a contact list!");
+
+        }
+        public void DisplayUniqueContacts()
+        {
+            Console.WriteLine("Enter the unique name (key value) : ");
+            string name = Console.ReadLine();
+            foreach (var contact in Dictionary1)
+            {
+                if (contact.Key.Contains(name))
+                {
+                    foreach (var data in contact.Value)
+                    {
+                        Console.WriteLine("The contact of " + data.firstName + " Details are");
+                        Console.WriteLine("Name of person : " + data.firstName + " " + data.lastName);
+                        Console.WriteLine("Address of person is : " + data.address);
+                        Console.WriteLine("City : " + data.city);
+                        Console.WriteLine("State :" + data.state);
+                        Console.WriteLine("Zip :" + data.zip);
+                        Console.WriteLine("Email of person : " + data.email);
+                        Console.WriteLine("Phone Number of person : " + data.phoneNumber);
+
+                    }
+                }
+
+                return;
+            }
+            Console.WriteLine("Oops! Unique Contact does not exist.Please create a unique contact.");
+            return;
         }
     }
 }
