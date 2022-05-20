@@ -33,7 +33,7 @@ namespace AddressBook
             Console.WriteLine("Enter the Email :");
             contact.email = Console.ReadLine();
             Console.WriteLine("Enter the Phone Number :");
-            contact.phoneNumber = Convert.ToInt16(Console.ReadLine());
+            contact.phoneNumber = Console.ReadLine();
             People.Add(contact);
         }
 
@@ -104,7 +104,7 @@ namespace AddressBook
                             break;
                         case 8:
                             Console.WriteLine("Please enter the Phone Number : ");
-                            int PhoneNumber = Convert.ToInt16(Console.ReadLine());
+                            string PhoneNumber = Console.ReadLine();
                             data.phoneNumber = PhoneNumber;
                             break;
                         default:
@@ -176,17 +176,17 @@ namespace AddressBook
                 }
             }
             Console.WriteLine("Contact list doesn't exist! Please create a contact list!");
-
+            return;
         }
         public void DisplayUniqueContacts()
         {
             Console.WriteLine("Enter the unique name (key value) : ");
             string name = Console.ReadLine();
-            foreach (var contact in Dictionary1)
+            foreach (var contacts in Dictionary1)
             {
-                if (contact.Key.Contains(name))
+                if (contacts.Key.Contains(name))
                 {
-                    foreach (var data in contact.Value)
+                    foreach (var data in contacts.Value)
                     {
                         Console.WriteLine("The contact of " + data.firstName + " Details are");
                         Console.WriteLine("Name of person : " + data.firstName + " " + data.lastName);
@@ -196,14 +196,17 @@ namespace AddressBook
                         Console.WriteLine("Zip :" + data.zip);
                         Console.WriteLine("Email of person : " + data.email);
                         Console.WriteLine("Phone Number of person : " + data.phoneNumber);
-
+                        return;
                     }
                 }
-
-                return;
+                else
+                {
+                    Console.WriteLine("This unique name doesnt exists!");
+                }
+                
             }
             Console.WriteLine("Oops! Unique Contact does not exist.Please create a unique contact.");
-            return;
+            
         }
     }
 }
