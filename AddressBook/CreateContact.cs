@@ -18,22 +18,36 @@ namespace AddressBook
         {
 
             Contact contact = new Contact();
+            int Flag = 0;
             Console.WriteLine("Enter the First name :");
             contact.firstName = Console.ReadLine();
-            Console.WriteLine("Enter the Last name :");
-            contact.lastName = Console.ReadLine();
-            Console.WriteLine("Enter the Address :");
-            contact.address = Console.ReadLine();
-            Console.WriteLine("Enter the City :");
-            contact.city = Console.ReadLine();
-            Console.WriteLine("Enter the State :");
-            contact.state = Console.ReadLine();
-            Console.WriteLine("Enter the Zip Code :");
-            contact.zip = Convert.ToInt16(Console.ReadLine());
-            Console.WriteLine("Enter the Email :");
-            contact.email = Console.ReadLine();
-            Console.WriteLine("Enter the Phone Number :");
-            contact.phoneNumber = Console.ReadLine();
+            string FirstNameToBeAdded = contact.firstName;
+            foreach (var data in People)
+            {
+                if (People.Exists(data => data.firstName == FirstNameToBeAdded))
+                {
+                    Flag++;
+                    Console.WriteLine("This FirstName already Exist! Can't take the Duplicate Record.");
+                    break;
+                }
+            }
+            if(Flag == 0 )
+            {
+                Console.WriteLine("Enter the Last name :");
+                contact.lastName = Console.ReadLine();
+                Console.WriteLine("Enter the Address :");
+                contact.address = Console.ReadLine();
+                Console.WriteLine("Enter the City :");
+                contact.city = Console.ReadLine();
+                Console.WriteLine("Enter the State :");
+                contact.state = Console.ReadLine();
+                Console.WriteLine("Enter the Zip Code :");
+                contact.zip = Convert.ToInt16(Console.ReadLine());
+                Console.WriteLine("Enter the Email :");
+                contact.email = Console.ReadLine();
+                Console.WriteLine("Enter the Phone Number :");
+                contact.phoneNumber = Console.ReadLine();
+            }         
             People.Add(contact);
         }
 
