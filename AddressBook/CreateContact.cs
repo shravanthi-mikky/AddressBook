@@ -64,6 +64,27 @@ namespace AddressBook
                     Console.WriteLine("Phone Number of person : " + data.phoneNumber);
             }
         }
+        //uc8
+        public void SearchByCityState()
+        {
+            Console.WriteLine("Please enter the name of City or State:");
+            string WantedCityOrState = Console.ReadLine();
+            foreach (var data in People)
+            {
+                string ActualCity = data.city;
+                string ActualState = data.state;
+                if (People.Exists(data => (ActualCity == WantedCityOrState) || (ActualState == WantedCityOrState)))
+                {
+                    Console.WriteLine("Name of person : " + data.firstName + " " + data.lastName);
+                    Console.WriteLine("Address of person is : " + data.address);
+                    Console.WriteLine("City : " + data.city);
+                    Console.WriteLine("State :" + data.state);
+                    Console.WriteLine("Zip :" + data.zip);
+                    Console.WriteLine("Email of person : " + data.email);
+                    Console.WriteLine("Phone Number of person : " + data.phoneNumber);
+                }
+            }
+        }
         public void edit()
         {
             Console.WriteLine("Enter the name to search : ");
