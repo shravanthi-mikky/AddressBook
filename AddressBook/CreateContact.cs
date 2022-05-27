@@ -51,6 +51,86 @@ namespace AddressBook
             }
             People.Add(contact);
         }
+        // sorting the contacts list in alphabetical order of firstName
+        public void SortingList()
+        {
+            List<Contact> SortedList = new List<Contact>();
+            SortedList = People.OrderBy(s => s.firstName).ToList();
+            //foreach(var data in People.OrderBy(s => s.firstName).ToList())
+            foreach (var data in SortedList)
+            {
+                if (People.Contains(data))
+                {
+                    Console.WriteLine("Name of person : " + data.firstName + " " + data.lastName);
+                    Console.WriteLine("Address of person is : " + data.address);
+                    Console.WriteLine("City : " + data.city);
+                    Console.WriteLine("State :" + data.state);
+                    Console.WriteLine("Zip :" + data.zip);
+                    Console.WriteLine("Email of person : " + data.email);
+                    Console.WriteLine("Phone Number of person : " + data.phoneNumber);
+                }                    
+            }
+        }
+        // sorting the contact list by city name in alphabetical order
+        public void SortingList_city()
+        {
+            List<Contact> SortedList = new List<Contact>();
+            SortedList = People.OrderBy(s => s.city).ToList();
+            //foreach(var data in People.OrderBy(s => s.firstName).ToList())
+            foreach (var data in SortedList)
+            {
+                if (People.Contains(data))
+                {
+                    Console.WriteLine("Name of person : " + data.firstName + " " + data.lastName);
+                    Console.WriteLine("Address of person is : " + data.address);
+                    Console.WriteLine("City : " + data.city);
+                    Console.WriteLine("State :" + data.state);
+                    Console.WriteLine("Zip :" + data.zip);
+                    Console.WriteLine("Email of person : " + data.email);
+                    Console.WriteLine("Phone Number of person : " + data.phoneNumber);
+                }
+            }
+        }
+        // sorting the contact list by state name in alphabetical order
+        public void SortingList_State()
+        {
+            List<Contact> SortedList = new List<Contact>();
+            SortedList = People.OrderBy(s => s.state).ToList();
+            //foreach(var data in People.OrderBy(s => s.firstName).ToList())
+            foreach (var data in SortedList)
+            {
+                if (People.Contains(data))
+                {
+                    Console.WriteLine("Name of person : " + data.firstName + " " + data.lastName);
+                    Console.WriteLine("Address of person is : " + data.address);
+                    Console.WriteLine("City : " + data.city);
+                    Console.WriteLine("State :" + data.state);
+                    Console.WriteLine("Zip :" + data.zip);
+                    Console.WriteLine("Email of person : " + data.email);
+                    Console.WriteLine("Phone Number of person : " + data.phoneNumber);
+                }
+            }
+        }
+        // sorting the contact list by zip
+        public void SortingList_Zip()
+        {
+            List<Contact> SortedList = new List<Contact>();
+            SortedList = People.OrderBy(s => s.zip).ToList();
+            //foreach(var data in People.OrderBy(s => s.firstName).ToList())
+            foreach (var data in SortedList)
+            {
+                if (People.Contains(data))
+                {
+                    Console.WriteLine("Name of person : " + data.firstName + " " + data.lastName);
+                    Console.WriteLine("Address of person is : " + data.address);
+                    Console.WriteLine("City : " + data.city);
+                    Console.WriteLine("State :" + data.state);
+                    Console.WriteLine("Zip :" + data.zip);
+                    Console.WriteLine("Email of person : " + data.email);
+                    Console.WriteLine("Phone Number of person : " + data.phoneNumber);
+                }
+            }
+        }
 
         public void Display()
         {
@@ -164,11 +244,8 @@ namespace AddressBook
                             Console.WriteLine("please choose from above options :");
                             break;
                     }
-
                 }
-
             }
-
         }
         public void RemoveContact()
         {
@@ -263,7 +340,6 @@ namespace AddressBook
         // uc9 Dictionary for the City and state
         public void ContactByCityInDictionary()
         {
-            // adding list to cities dictionary
             try
             {
                 var data = People.GroupBy(x => x.city);

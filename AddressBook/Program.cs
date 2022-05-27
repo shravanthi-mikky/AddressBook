@@ -5,7 +5,7 @@ Console.WriteLine("Address Book!");
 CreateContact contact1 = new CreateContact();
 while (true)
 {
-    Console.WriteLine("Enter the option : \n1)Add Contact\n2)Display contact\n3 Edit Contact\n4)Remove Contact\n5)Add Multiple Contacts \n6)AddUniqueContacts\n7)Display Unique contacts\n8)Search name by City or State\n9)Get Count of Persons by City or State\n10)Maintain Dictionary_city\n11)Maintain Dictionary_state");
+    Console.WriteLine("Enter the option : \n1)Add Contact\n2)Display contact\n3 Edit Contact\n4)Remove Contact\n5)Add Multiple Contacts \n6)AddUniqueContacts\n7)Display Unique contacts\n8)Search name by City or State\n9)Get Count of Persons by City or State\n10)Maintain Dictionary_city\n11)Maintain Dictionary_state\n12)Sorting list by firstNames\n13)Sorting list by city\n14)Sorting list by state\n15)Sorting list by zip");
     int option = Convert.ToInt32(Console.ReadLine());
 
     switch (option)
@@ -46,6 +46,18 @@ while (true)
         case 11:
             contact1.ContactByStateInDictionary();
             contact1.DictionayState_Display();
+            break;
+        case 12:
+            contact1.SortingList();
+            break;
+        case 13:
+            contact1.SortingList_city();
+            break;
+        case 14:
+            contact1.SortingList_State();
+            break;
+        case 15:
+            contact1.SortingList_Zip();
             break;
         default:
             Console.WriteLine("Please choose correct option");
