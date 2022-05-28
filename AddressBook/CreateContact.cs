@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace AddressBook
 {
@@ -130,7 +131,6 @@ namespace AddressBook
                 }
             }
         }
-
         public void Display()
         {
             foreach (var data in People)
@@ -306,8 +306,7 @@ namespace AddressBook
             }
             Console.WriteLine("Contact list doesn't exist! Please create a contact list!");
             return;
-        }
-        
+        }        
         public void DisplayUniqueContacts()
         {
             Console.WriteLine("Enter the unique name (key value) : ");
@@ -415,6 +414,25 @@ namespace AddressBook
                     }
                 }
             }
+        }
+        string path = @"C:\Users\santo\OneDrive\Desktop\CSharpCodes\AddressBook\AddressBook\TextFile1.txt";
+        public void WriteToTextFile()
+        {
+            using (TextWriter Tw = File.AppendText(path))
+            {
+                foreach (Contact item in People)
+                {
+                    Tw.WriteLine("First Name:" + item.firstName.ToString());
+                }
+            }
+        }
+        public void ReadFileIO()
+        {
+            string lines;
+
+            lines = File.ReadAllText(path);
+            Console.WriteLine("Reading All the Text");
+            Console.WriteLine(lines);
         }
     }
 }
