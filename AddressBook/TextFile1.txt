@@ -1,0 +1,8 @@
+﻿
+firstName :shravanthi
+lastName :pabboji
+email :shravanthi@gmail.com
+phoneNumber :1234567890
+city  :Hyderabad
+state :Telangana
+zIiP :12345
