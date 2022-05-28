@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Globalization;
+using CsvHelper;
+using Newtonsoft.Json;
 
 namespace AddressBook
 {
@@ -14,8 +17,6 @@ namespace AddressBook
         public Dictionary<string, List<Contact>> Dictionary1 = new Dictionary<string, List<Contact>>();
         public Dictionary<string, List<Contact>> DictionaryCity = new Dictionary<string, List<Contact>>();
         public Dictionary<string, List<Contact>> DictionaryState = new Dictionary<string, List<Contact>>();
-
-        
         public void AddPerson()
         {
             Contact contact = new Contact();
@@ -434,5 +435,36 @@ namespace AddressBook
             Console.WriteLine("Reading All the Text");
             Console.WriteLine(lines);
         }
+        public void WriteJson()
+        {
+            string json = @"C:\Users\santo\OneDrive\Desktop\CSharpCodes\AddressBook\AddressBook\jsonFile.json";
+            foreach(Contact item in People)
+            {
+                string json1 = JsonConvert.SerializeObject(People);
+                File.WriteAllText(json, json1);
+
+            }
+            Console.WriteLine("copied all data");
+
+        }
+        //read from json (Deserialize fron json file)
+        public void ReadJsonFile()
+        {
+            string json = @"C:\Users\santo\OneDrive\Desktop\CSharpCodes\AddressBook\AddressBook\jsonFile.json";
+            string jsonData = File.ReadAllText(json);
+            var jsonResult = JsonConvert.DeserializeObject<List<Contact>>(jsonData).ToList();
+            Console.WriteLine("Reading from Json file");
+            foreach (var data in jsonResult)
+            {
+                Console.WriteLine("Name of person : " + data.firstName + " " + data.lastName);
+                Console.WriteLine("Address of person is : " + data.address);
+                Console.WriteLine("City : " + data.city);
+                Console.WriteLine("State :" + data.state);
+                Console.WriteLine("Zip :" + data.zip);
+                Console.WriteLine("Email of person : " + data.email);
+                Console.WriteLine("Phone Number of person : " + data.phoneNumber);
+            }
+        }
+        
     }
 }
