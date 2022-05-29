@@ -5,4 +5,4 @@ email :shravanthi@gmail.com
 phoneNumber :1234567890
 city  :Hyderabad
 state :Telangana
-zIiP :12345
+zip :12345

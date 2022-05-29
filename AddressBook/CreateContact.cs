@@ -417,16 +417,24 @@ namespace AddressBook
                 }
             }
         }
-        string path = @"C:\Users\santo\OneDrive\Desktop\CSharpCodes\AddressBook\AddressBook\TextFile1.txt";
+        string path = @"C:\Users\Admin\Desktop\CSharp\AddressBook\AddressBook\TextFile1.txt";
         public void WriteToTextFile()
         {
-            using (TextWriter Tw = File.AppendText(path))
+            using (TextWriter sw = File.AppendText(path))
             {
                 foreach (Contact item in People)
-                {
-                    Tw.WriteLine("First Name:" + item.firstName.ToString());
+                {   
+                    sw.WriteLine("FirstName :" + item.firstName.ToString());
+                    sw.WriteLine("lastName :" + item.lastName.ToString());
+                    sw.WriteLine("Email ID :" + item.email.ToString());
+                    sw.WriteLine("Mobile Number :" + item.phoneNumber.ToString());
+                    sw.WriteLine("City  :" + item.city.ToString());
+                    sw.WriteLine("State :" + item.state.ToString());
+                    sw.WriteLine("ZIP :" + item.zip.ToString());
+                    Console.WriteLine("\n");
                 }
             }
+            Console.WriteLine("text file written to IO file");
         }
         public void ReadFileIO()
         {
@@ -438,7 +446,7 @@ namespace AddressBook
         }
         public void WriteJson()
         {
-            string json = @"C:\Users\santo\OneDrive\Desktop\CSharpCodes\AddressBook\AddressBook\jsonFile.json";
+            string json = @"C:\Users\Admin\Desktop\CSharp\AddressBook\AddressBook\jsonFile.json";
             foreach(Contact item in People)
             {
                 string json1 = JsonConvert.SerializeObject(People);
@@ -451,7 +459,7 @@ namespace AddressBook
         //read from json (Deserialize fron json file)
         public void ReadJsonFile()
         {
-            string json = @"C:\Users\santo\OneDrive\Desktop\CSharpCodes\AddressBook\AddressBook\jsonFile.json";
+            string json = @"C:\Users\Admin\Desktop\CSharp\AddressBook\AddressBook\jsonFile.json";
             string jsonData = File.ReadAllText(json);
             var jsonResult = JsonConvert.DeserializeObject<List<Contact>>(jsonData).ToList();
             Console.WriteLine("Reading from Json file");
