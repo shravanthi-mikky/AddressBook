@@ -12,6 +12,9 @@ namespace AddressBook
 {
     public class CreateContact
     {
+        string csvPath = @"C:\Users\Admin\Desktop\CSharp\AddressBook\AddressBook\Class1.csv";
+        string json = @"C:\Users\Admin\Desktop\CSharp\AddressBook\AddressBook\jsonFile.json";
+        string path = @"C:\Users\Admin\Desktop\CSharp\AddressBook\AddressBook\TextFile1.txt";
 
         public List<Contact> People = new List<Contact>();
         public Dictionary<string, List<Contact>> Dictionary1 = new Dictionary<string, List<Contact>>();
@@ -417,7 +420,7 @@ namespace AddressBook
                 }
             }
         }
-        string path = @"C:\Users\Admin\Desktop\CSharp\AddressBook\AddressBook\TextFile1.txt";
+        //write to the text file
         public void WriteToTextFile()
         {
             using (TextWriter sw = File.AppendText(path))
@@ -434,32 +437,33 @@ namespace AddressBook
                     Console.WriteLine("\n");
                 }
             }
-            Console.WriteLine("text file written to IO file");
+            Console.WriteLine("Text file written to IO file");
         }
+        //read from text file
         public void ReadFileIO()
         {
             string lines;
 
             lines = File.ReadAllText(path);
-            Console.WriteLine("Reading All the Text");
+            Console.WriteLine("Reading All the Text from Text file (TextFile1.txt)");
             Console.WriteLine(lines);
         }
+        //write to json (Serialize json file)
+
         public void WriteJson()
         {
-            string json = @"C:\Users\Admin\Desktop\CSharp\AddressBook\AddressBook\jsonFile.json";
             foreach(Contact item in People)
             {
                 string json1 = JsonConvert.SerializeObject(People);
                 File.WriteAllText(json, json1);
 
             }
-            Console.WriteLine("copied all data");
+            Console.WriteLine("Copied all data");
 
         }
         //read from json (Deserialize fron json file)
         public void ReadJsonFile()
         {
-            string json = @"C:\Users\Admin\Desktop\CSharp\AddressBook\AddressBook\jsonFile.json";
             string jsonData = File.ReadAllText(json);
             var jsonResult = JsonConvert.DeserializeObject<List<Contact>>(jsonData).ToList();
             Console.WriteLine("Reading from Json file");
@@ -474,6 +478,33 @@ namespace AddressBook
                 Console.WriteLine("Phone Number of person : " + data.phoneNumber);
             }
         }
-        
+        //write to csv file
+        public void WriteCsvFile()
+        {
+            StreamWriter sw = new StreamWriter(csvPath);
+            CsvWriter cw = new CsvWriter(sw, CultureInfo.InvariantCulture);
+
+            foreach (var book in Dictionary1.Values)
+            {
+                cw.WriteRecords<Contact>(book);
+            }
+            Console.WriteLine("Dictionary1 is added to CSV file Successfully!");
+            sw.Flush();
+            sw.Close();
+        }
+        //read from csv file
+        public void ReadCsvFile()
+        {
+            StreamReader sr = new StreamReader(csvPath);
+            CsvReader cr = new CsvReader(sr, CultureInfo.InvariantCulture);
+            List<Contact> readResult = cr.GetRecords<Contact>().ToList();
+            Console.WriteLine("Reading from CSV file");
+            foreach (var item in readResult)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            sr.Close();
+        }
+
     }
 }

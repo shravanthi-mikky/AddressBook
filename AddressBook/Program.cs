@@ -71,6 +71,12 @@ while (true)
         case 19:
             contact1.ReadJsonFile();
             break;
+        case 20:
+            contact1.WriteCsvFile();
+            break;
+        case 21:
+            contact1.ReadCsvFile();
+            break;
         default:
             Console.WriteLine("Please choose correct option");
             break;
