@@ -502,7 +502,14 @@ namespace AddressBook
             Console.WriteLine("Reading from CSV file");
             foreach (var item in readResult)
             {
-                Console.WriteLine(item.ToString());
+                Console.WriteLine(item.firstName.ToString());
+                Console.WriteLine(item.lastName.ToString());
+                Console.WriteLine(item.email.ToString());
+                Console.WriteLine(item.phoneNumber.ToString());
+                Console.WriteLine(item.address.ToString());
+                Console.WriteLine(item.city.ToString());
+                Console.WriteLine(item.state.ToString());
+                Console.WriteLine(item.zip.ToString());
             }
             sr.Close();
         }
