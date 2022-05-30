@@ -416,6 +416,7 @@ namespace AddressBook
                 }
             }
         }
+        // write data to text file
         string path = @"C:\Users\santo\OneDrive\Desktop\CSharpCodes\AddressBook\AddressBook\TextFile1.txt";
         public void WriteToTextFile()
         {
@@ -424,9 +425,18 @@ namespace AddressBook
                 foreach (Contact item in People)
                 {
                     Tw.WriteLine("First Name:" + item.firstName.ToString());
+                    Tw.WriteLine("First Name:" + item.lastName.ToString());
+                    Tw.WriteLine("Address of person is : " + item.address.ToString());
+                    Tw.WriteLine("City :" + item.city.ToString());
+                    Tw.WriteLine("State :" + item.state.ToString());
+                    Tw.WriteLine("Zip :" + item.zip.ToString());
+                    Tw.WriteLine("Email Id :" + item.email.ToString());
+                    Tw.WriteLine("Phone Number :" + item.phoneNumber.ToString());
                 }
+                Console.WriteLine("Details of person are added to Text file Sucessfully!");
             }
         }
+        //read data from the text type
         public void ReadFileIO()
         {
             string lines;
@@ -435,6 +445,8 @@ namespace AddressBook
             Console.WriteLine("Reading All the Text");
             Console.WriteLine(lines);
         }
+        //write from json (Deserialize fron json file)
+
         public void WriteJson()
         {
             string json = @"C:\Users\santo\OneDrive\Desktop\CSharpCodes\AddressBook\AddressBook\jsonFile.json";
@@ -444,7 +456,7 @@ namespace AddressBook
                 File.WriteAllText(json, json1);
 
             }
-            Console.WriteLine("copied all data");
+            Console.WriteLine("copied all data to JSON file Sucessfully!");
 
         }
         //read from json (Deserialize fron json file)
@@ -465,6 +477,34 @@ namespace AddressBook
                 Console.WriteLine("Phone Number of person : " + data.phoneNumber);
             }
         }
-        
+        //write to csv
+        public void WriteCsvFile()
+        {
+            string csvPath = @"C:\Users\santo\OneDrive\Desktop\CSharpCodes\AddressBook\AddressBook\ReadWriteToCSV.csv";
+            StreamWriter sw = new StreamWriter(csvPath);
+            CsvWriter cw = new CsvWriter(sw, CultureInfo.InvariantCulture);
+
+            foreach (var book in Dictionary1.Values)
+            {
+                cw.WriteRecords<Contact>(book);
+            }
+            Console.WriteLine("Write the addressBook with person contact as CSV file is Successfull");
+            sw.Flush();
+            sw.Close();
+        }
+        //read from CSV file
+        public void ReadCsvFile()
+        {
+            string csvPath = @"C:\Users\santo\OneDrive\Desktop\CSharpCodes\AddressBook\AddressBook\ReadWriteToCSV.csv";
+            StreamReader sr = new StreamReader(csvPath);
+            CsvReader cr = new CsvReader(sr, CultureInfo.InvariantCulture);
+            List<Contact> readResult = cr.GetRecords<Contact>().ToList();
+            Console.WriteLine("Reading from CSV file");
+            foreach (var item in readResult)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            sr.Close();
+        }
     }
 }
