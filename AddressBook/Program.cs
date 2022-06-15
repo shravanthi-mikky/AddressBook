@@ -3,9 +3,15 @@ using AddressBook;
 
 Console.WriteLine("Address Book!");
 CreateContact contact1 = new CreateContact();
+AddressBookRepo repo = new AddressBookRepo();   
 while (true)
 {
-    Console.WriteLine("Enter the option : \n1)Add Contact\n2)Display contact\n3 Edit Contact\n4)Remove Contact\n5)Add Multiple Contacts \n6)AddUniqueContacts\n7)Display Unique contacts\n8)Search name by City or State\n9)Get Count of Persons by City or State\n10)Maintain Dictionary_city\n11)Maintain Dictionary_state\n12)Sorting list by firstNames\n13)Sorting list by city\n14)Sorting list by state\n15)Sorting list by zip\n16) Write to File IO\n17)read to file IO\n18)Write to json(serialize)\n19)Read from json(Deserialize)");
+    Console.WriteLine("Enter the option : \n1)Add Contact\n2)Display contact\n3 Edit Contact\n4)Remove Contact\n5)Add Multiple Contacts " +
+        "\n6)AddUniqueContacts\n7)Display Unique contacts\n8)Search name by City or State\n9)Get Count of Persons by City or State" +
+        "\n10)Maintain Dictionary_city\n11)Maintain Dictionary_state\n12)Sorting list by firstNames\n13)Sorting list by city\n14)Sorting list by state" +
+        "\n15)Sorting list by zip\n16) Write to File IO\n17)read to file IO\n18)Write to json(serialize)\n19)Read from json(Deserialize)" +
+        "\n20)WriteCsvFile\n21)ReadCsvFile\n22)Display of AddressBook\n23)Display of PersonDetail1\n24)Display of Address_Book1\n25)Display of PersonTypes1" +
+        "\n26)Display of PersonsDetail_Type1\n27)Display of Employee_Department1");
     int option = Convert.ToInt32(Console.ReadLine());
 
     switch (option)
@@ -76,6 +82,36 @@ while (true)
             break;
         case 21:
             contact1.ReadCsvFile();
+            break;
+        case 22:
+            Console.WriteLine("Display of AddressBook");
+            repo.GetAllContactOf_AddressBook();
+            Console.WriteLine("*********************************************************");
+            break;
+        case 23:
+            Console.WriteLine("Display of PersonDetail1");
+            repo.GetAllContactOf_PersonDetail1();
+            Console.WriteLine("*********************************************************");
+            break;
+        case 24:
+            Console.WriteLine("Display of Address_Book1");
+            repo.GetAllContactOf_Address_Book1();
+            Console.WriteLine("*********************************************************");
+            break;
+        case 25:
+            Console.WriteLine("Display of PersonTypes1");
+            repo.GetAllContactOf_PersonTypes1();
+            Console.WriteLine("*********************************************************");
+            break;
+        case 26:
+            Console.WriteLine("Display of PersonsDetail_Type1");
+            repo.GetAllContactOf_PersonsDetail_Type1();
+            Console.WriteLine("*********************************************************");
+            break;
+        case 27:
+            Console.WriteLine("Display of Employee_Department1");
+            repo.GetAllContactOf_Employee_Department1();
+            Console.WriteLine("*********************************************************");
             break;
         default:
             Console.WriteLine("Please choose correct option");
