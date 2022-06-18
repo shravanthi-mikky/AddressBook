@@ -60,5 +60,12 @@ namespace AddressBook.Tests
             repo.GetAllContactOf_Employee_Department1();
             Console.WriteLine("*********************************************************");
         }
+        [TestMethod()]
+        public void updateEmployeeDetails_Department1Test()
+        {
+            string expected = "Updated Colony";
+            string address = repo.updateEmployeeDetails();
+            Assert.AreEqual(expected, address);
+        }
     }
 }

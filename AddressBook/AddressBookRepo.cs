@@ -233,5 +233,23 @@ namespace AddressBook
                 Console.WriteLine(e.Message);
             }
         }
+        public string updateEmployeeDetails()
+        {
+            SqlConnection Connection = new SqlConnection(@"Data Source=LAPTOP-2UH1FDRP\MSSQLSERVER01; Initial Catalog =AddressBookService; Integrated Security = True;");
+            Connection.Open();
+            SqlCommand command = new SqlCommand("update PersonDetail1 set Address='Updated Colony' where FirstName='Shravanthi'", Connection);
+
+            int effectedRow = command.ExecuteNonQuery();
+            if (effectedRow == 1)
+            {
+                string query = @"Select Address from PersonDetail1 where FirstName='Shravanthi';";
+                SqlCommand cmd = new SqlCommand(query, Connection);
+                object res = cmd.ExecuteScalar();
+                Connection.Close();
+                addressmodel.Address = (string)res;
+            }
+            Connection.Close();
+            return (addressmodel.Address);
+        }
     }
 }

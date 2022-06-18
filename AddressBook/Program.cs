@@ -113,6 +113,12 @@ while (true)
             repo.GetAllContactOf_Employee_Department1();
             Console.WriteLine("*********************************************************");
             break;
+        case 28:
+            Console.WriteLine("Display of PersonDetail1");
+            string address = repo.updateEmployeeDetails();
+            Console.WriteLine(address);
+            Console.WriteLine("*********************************************************");
+            break;
         default:
             Console.WriteLine("Please choose correct option");
             break;
