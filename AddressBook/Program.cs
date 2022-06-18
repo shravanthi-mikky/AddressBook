@@ -11,7 +11,8 @@ while (true)
         "\n10)Maintain Dictionary_city\n11)Maintain Dictionary_state\n12)Sorting list by firstNames\n13)Sorting list by city\n14)Sorting list by state" +
         "\n15)Sorting list by zip\n16) Write to File IO\n17)read to file IO\n18)Write to json(serialize)\n19)Read from json(Deserialize)" +
         "\n20)WriteCsvFile\n21)ReadCsvFile\n22)Display of AddressBook\n23)Display of PersonDetail1\n24)Display of Address_Book1\n25)Display of PersonTypes1" +
-        "\n26)Display of PersonsDetail_Type1\n27)Display of Employee_Department1\n28)Update Employee Details\n29)Add Column DateAdded\n30)Contacts in date range");
+        "\n26)Display of PersonsDetail_Type1\n27)Display of Employee_Department1\n28)Update Employee Details\n29)Add Column DateAdded" +
+        "\n30)Contacts in date range\n31)count by city / State");
     int option = Convert.ToInt32(Console.ReadLine());
 
     switch (option)
@@ -124,6 +125,12 @@ while (true)
             break;
         case 30:
             repo.GetDetailsInPeroid();
+            break;
+        case 31:
+            int countCity = repo.CountOfEmployeeDetailsByCity();
+            Console.WriteLine("Count of Records by City :"+countCity);
+            int countstate = repo.CountOfEmployeeDetailsByState();
+            Console.WriteLine("Count of Records by state :" + countstate);
             break;
         default:
             Console.WriteLine("Please choose correct option");

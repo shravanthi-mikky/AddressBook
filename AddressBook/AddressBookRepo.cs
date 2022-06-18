@@ -330,5 +330,32 @@ namespace AddressBook
             }
             connection.Close();
         }
+        //count by city
+        public int CountOfEmployeeDetailsByCity()
+        {
+            int count;
+            SqlConnection Connection = new SqlConnection(@"Data Source=LAPTOP-2UH1FDRP\MSSQLSERVER01; Initial Catalog =AddressBookService; Integrated Security = True;");
+            Connection.Open();
+            string query = @"Select count(*) from PersonDetail1 where City='Old Alwal';";
+            SqlCommand command = new SqlCommand(query, Connection);
+            object res = command.ExecuteScalar();
+            Connection.Close();
+            int Count = (int)res;
+            return Count;
+        }
+
+        //count by state
+        public int CountOfEmployeeDetailsByState()
+        {
+            int count;
+            SqlConnection Connection = new SqlConnection(@"Data Source=LAPTOP-2UH1FDRP\MSSQLSERVER01; Initial Catalog =AddressBookService; Integrated Security = True;");
+            Connection.Open();
+            string query = @"Select count(*) from PersonDetail1 where State='Telangana';";
+            SqlCommand command = new SqlCommand(query, Connection);
+            object res = command.ExecuteScalar();
+            Connection.Close();
+            int Count = (int)res;
+            return Count;
+        }
     }
 }
