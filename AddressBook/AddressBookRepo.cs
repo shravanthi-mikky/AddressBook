@@ -42,6 +42,7 @@ namespace AddressBook
                             addressmodel.Zip = datareader.GetInt32(6);
                             addressmodel.PhoneNumber = datareader.GetString(7);
                             addressmodel.Email_ID = datareader.GetString(8);
+                            addressmodel.DateAdded = datareader.GetDateTime(9);
 
                             Console.WriteLine(addressmodel.FirstName + " " +
                                 addressmodel.LastName + " " +
@@ -50,7 +51,8 @@ namespace AddressBook
                                 addressmodel.State + " " +
                                 addressmodel.Zip + " " +
                                 addressmodel.PhoneNumber + " " +
-                                addressmodel.Email_ID + " " 
+                                addressmodel.Email_ID + " " +
+                                addressmodel.DateAdded
                                 );
                         }
                     }
@@ -87,6 +89,7 @@ namespace AddressBook
                             personDetail1.Zip = datareader.GetInt32(7);
                             personDetail1.PhoneNumber = datareader.GetInt64(8);
                             personDetail1.Email_ID = datareader.GetString(9);
+                            personDetail1.DateAdded = datareader.GetDateTime(10);
 
                             Console.WriteLine(personDetail1.FirstName + " " +
                                 personDetail1.LastName + " " +
@@ -95,7 +98,8 @@ namespace AddressBook
                                 personDetail1.State + " " +
                                 personDetail1.Zip + " " +
                                 personDetail1.PhoneNumber + " " +
-                                personDetail1.Email_ID + " "
+                                personDetail1.Email_ID + " " +
+                                personDetail1.DateAdded
                                 );
                         }
                     }
@@ -250,6 +254,81 @@ namespace AddressBook
             }
             Connection.Close();
             return (addressmodel.Address);
+        }
+        public void AddColumn_DateAdded_EmployeeDetails()
+        {
+            SqlConnection Connection = new SqlConnection(@"Data Source=LAPTOP-2UH1FDRP\MSSQLSERVER01; Initial Catalog =AddressBookService; Integrated Security = True;");
+            Connection.Open();
+            SqlCommand command = new SqlCommand("Alter table AddressBook add DateAdded DateTime;", Connection);
+
+            int effectedRow = command.ExecuteNonQuery();
+            if (effectedRow == 1)
+            {
+                string query = @"update AddressBook set DateAdded=Date.Now ;";
+                SqlCommand cmd = new SqlCommand(query, Connection);
+                object res = cmd.ExecuteScalar();
+                Connection.Close();
+                addressmodel.Address = (string)res;
+            }
+            Connection.Close();
+            
+        }
+        public void AddColumn_DateAdded_PersonDetails1()
+        {
+            SqlConnection Connection = new SqlConnection(@"Data Source=LAPTOP-2UH1FDRP\MSSQLSERVER01; Initial Catalog =AddressBookService; Integrated Security = True;");
+            Connection.Open();
+            SqlCommand command = new SqlCommand("Alter table PersonDetails1 add DateAdded DateTime;", Connection);
+
+            int effectedRow = command.ExecuteNonQuery();
+            if (effectedRow == 1)
+            {
+                
+                string query = @"update PersonDetails1 set DateAdded=Date.Now ;";
+                SqlCommand cmd = new SqlCommand(query, Connection);
+                object res = cmd.ExecuteScalar();
+                Connection.Close();
+                addressmodel.Address = (string)res;
+            }
+            Connection.Close();
+
+        }
+        public void GetDetailsInPeroid()
+        {
+            SqlConnection connection = new SqlConnection(@"Data Source=LAPTOP-2UH1FDRP\MSSQLSERVER01; Initial Catalog =AddressBookService; Integrated Security = True;");
+            connection.Open();
+            string query = @"select * from PersonDetail1 where DateAdded between CAST('2020-01-01' as date) and CAST('2022-01-02' as date);";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.ExecuteNonQuery();
+            SqlDataReader data = cmd.ExecuteReader();
+            if (data.HasRows)
+            {
+                while (data.Read())
+                {
+                    personDetail1.PersonId = data.GetInt32(0);
+                    personDetail1.AddressBookId = data.GetInt32(1);
+                    personDetail1.FirstName = data.GetString(2);
+                    personDetail1.LastName = data.GetString(3);
+                    personDetail1.Address = data.GetString(4);
+                    personDetail1.City = data.GetString(5);
+                    personDetail1.State = data.GetString(6);
+                    personDetail1.Zip = data.GetInt32(7);
+                    personDetail1.PhoneNumber = data.GetInt64(8);
+                    personDetail1.Email_ID = data.GetString(9);
+                    personDetail1.DateAdded = data.GetDateTime(10);
+
+                    Console.WriteLine(personDetail1.FirstName + " " +
+                        personDetail1.LastName + " " +
+                        personDetail1.Address + " " +
+                        personDetail1.City + " " +
+                        personDetail1.State + " " +
+                        personDetail1.Zip + " " +
+                        personDetail1.PhoneNumber + " " +
+                        personDetail1.Email_ID + " " +
+                        personDetail1.DateAdded
+                        );
+                }
+            }
+            connection.Close();
         }
     }
 }

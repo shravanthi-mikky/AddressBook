@@ -18,6 +18,7 @@ namespace AddressBook
         public int Zip { get; set; }
         public string PhoneNumber { get; set; }
         public string Email_ID { get; set; }
+        public DateTime DateAdded { get; set; }
 
     }
     public class Address_Book1
@@ -39,6 +40,7 @@ namespace AddressBook
         public long PhoneNumber { get; set; }
         //is in bigint
         public string Email_ID { get; set; }
+        public DateTime DateAdded { get; set; }
     }
     
     public class PersonTypes1

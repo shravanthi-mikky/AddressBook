@@ -11,7 +11,7 @@ while (true)
         "\n10)Maintain Dictionary_city\n11)Maintain Dictionary_state\n12)Sorting list by firstNames\n13)Sorting list by city\n14)Sorting list by state" +
         "\n15)Sorting list by zip\n16) Write to File IO\n17)read to file IO\n18)Write to json(serialize)\n19)Read from json(Deserialize)" +
         "\n20)WriteCsvFile\n21)ReadCsvFile\n22)Display of AddressBook\n23)Display of PersonDetail1\n24)Display of Address_Book1\n25)Display of PersonTypes1" +
-        "\n26)Display of PersonsDetail_Type1\n27)Display of Employee_Department1");
+        "\n26)Display of PersonsDetail_Type1\n27)Display of Employee_Department1\n28)Update Employee Details\n29)Add Column DateAdded\n30)Contacts in date range");
     int option = Convert.ToInt32(Console.ReadLine());
 
     switch (option)
@@ -118,6 +118,12 @@ while (true)
             string address = repo.updateEmployeeDetails();
             Console.WriteLine(address);
             Console.WriteLine("*********************************************************");
+            break;
+        case 29:
+            repo.AddColumn_DateAdded_EmployeeDetails();
+            break;
+        case 30:
+            repo.GetDetailsInPeroid();
             break;
         default:
             Console.WriteLine("Please choose correct option");
